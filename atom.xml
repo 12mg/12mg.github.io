@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-09T07:30:18.970Z</updated>
+  <updated>2019-05-10T09:53:33.122Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>修饰器与参数</title>
+    <link href="http://yoursite.com/2019/05/08/decovar/"/>
+    <id>http://yoursite.com/2019/05/08/decovar/</id>
+    <published>2019-05-08T08:13:10.000Z</published>
+    <updated>2019-05-10T09:53:33.122Z</updated>
+    
+    <content type="html"><![CDATA[<p>在前端切面编程中有个问题，比如做表格批量删除，删除前先判断是否有选中删除的项，如果有，则执行删除，如果无，则执行提示框提示先选择，这时候可以把这个判断切面，函数仅仅执行删除过程<br>但是出现的问题是，切面中需要获取变量值，保留修饰器的特性同时将this的值传进去呢？<br>组件不管是json对象，还是class对象，都无法让外部函数调用组建的this，即使apply也找不到组件对象，这是我采用了泽中的办法，参数值如果为组件变量，则仅仅传入参数Key，通过修饰器内部获取值<br>这是目前的最优解，可能会有特殊情况没考虑，遇到了再修改</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在前端切面编程中有个问题，比如做表格批量删除，删除前先判断是否有选中删除的项，如果有，则执行删除，如果无，则执行提示框提示先选择，这时候可以把这个判断切面，函数仅仅执行删除过程&lt;br&gt;但是出现的问题是，切面中需要获取变量值，保留修饰器的特性同时将this的值传进去呢？&lt;br
+      
+    
+    </summary>
+    
+      <category term="前端架构设计" scheme="http://yoursite.com/categories/%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>对象状态暂存</title>
