@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>router处理 | CHEN.JH</title>
+  <title>docker中使用mysql做定时备份 | CHEN.JH</title>
   <meta name="description" content>
   <meta name="keywords" content>
   <meta name="HandheldFriendly" content="True">
@@ -12,17 +12,17 @@
   <link rel="shortcut icon" href="/">
   <link rel="alternate" href="/atom.xml" title="CHEN.JH">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="vue中关于router架构，目前我设计了两种方案，可根据不同的情况搭配。1.中心化，分类打包2.去中心化，整体打包 中心化：常规配置，但应用了按需加载，使单文件分类打包，优点是项目第一次加载快，并且编译出的结果分析性高去中心化：非常规配置，官方提供的功能是通过路由寻找到页面，但页面需在router里面配置一下，导致耦合性低，去中心化是将router配置放在了需加载页面中，不需要创建router配">
+  <meta name="description" content="1，写sh脚本,放在宿主机上的/shell下123456789101112131415161718192021# 保留10天数据，# mysqldocker 为安装mysql的dockerdocker exec -i mysql bash&amp;lt;&amp;lt;&amp;apos;EOF&amp;apos;# 判断目录是不是已经存在，如果不存在则创建if [ ! -d &amp;quot;/backups/mysql&amp;quot;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="router处理">
-<meta property="og:url" content="http://yoursite.com/2019/05/06/routerSet/index.html">
+<meta property="og:title" content="docker中使用mysql做定时备份">
+<meta property="og:url" content="http://yoursite.com/2019/01/14/devops/crontab-mysql-docker/index.html">
 <meta property="og:site_name" content="CHEN.JH">
-<meta property="og:description" content="vue中关于router架构，目前我设计了两种方案，可根据不同的情况搭配。1.中心化，分类打包2.去中心化，整体打包 中心化：常规配置，但应用了按需加载，使单文件分类打包，优点是项目第一次加载快，并且编译出的结果分析性高去中心化：非常规配置，官方提供的功能是通过路由寻找到页面，但页面需在router里面配置一下，导致耦合性低，去中心化是将router配置放在了需加载页面中，不需要创建router配">
+<meta property="og:description" content="1，写sh脚本,放在宿主机上的/shell下123456789101112131415161718192021# 保留10天数据，# mysqldocker 为安装mysql的dockerdocker exec -i mysql bash&amp;lt;&amp;lt;&amp;apos;EOF&amp;apos;# 判断目录是不是已经存在，如果不存在则创建if [ ! -d &amp;quot;/backups/mysql&amp;quot;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-07T08:15:15.928Z">
+<meta property="og:updated_time" content="2020-01-02T05:57:54.057Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="router处理">
-<meta name="twitter:description" content="vue中关于router架构，目前我设计了两种方案，可根据不同的情况搭配。1.中心化，分类打包2.去中心化，整体打包 中心化：常规配置，但应用了按需加载，使单文件分类打包，优点是项目第一次加载快，并且编译出的结果分析性高去中心化：非常规配置，官方提供的功能是通过路由寻找到页面，但页面需在router里面配置一下，导致耦合性低，去中心化是将router配置放在了需加载页面中，不需要创建router配">
+<meta name="twitter:title" content="docker中使用mysql做定时备份">
+<meta name="twitter:description" content="1，写sh脚本,放在宿主机上的/shell下123456789101112131415161718192021# 保留10天数据，# mysqldocker 为安装mysql的dockerdocker exec -i mysql bash&amp;lt;&amp;lt;&amp;apos;EOF&amp;apos;# 判断目录是不是已经存在，如果不存在则创建if [ ! -d &amp;quot;/backups/mysql&amp;quot;">
     
   <link href="https://fonts.googleapis.com/css?family=Inconsolata|Titillium+Web" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
@@ -123,20 +123,20 @@
   <div class="l_body">
     <div class='container clearfix'>
       <div class='l_main'>
-        <article id="post-routerSet" class="post white-box article-type-post" itemscope itemprop="blogPost">
+        <article id="post-devops/crontab-mysql-docker" class="post white-box article-type-post" itemscope itemprop="blogPost">
 	<section class="meta">
 	<h2 class="title">
-  	<a href="/2019/05/06/routerSet/">
-    	router处理
+  	<a href="/2019/01/14/devops/crontab-mysql-docker/">
+    	docker中使用mysql做定时备份
     </a>
   </h2>
 	<time>
-	  May 6, 2019
+	  Jan 14, 2019
 	</time>
 	
     
     <div class="cats">
-        <a href="/categories/前端架构设计/">前端架构设计</a>
+        <a href="/categories/运维/">运维</a>
     </div>
 
 	</section>
@@ -145,9 +145,12 @@
 	
 	<section class="article typo">
   	<div class="article-entry" itemprop="articleBody">
-    	<p>vue中关于router架构，目前我设计了两种方案，可根据不同的情况搭配。<br>1.中心化，分类打包<br>2.去中心化，整体打包</p>
-<p>中心化：常规配置，但应用了按需加载，使单文件分类打包，优点是项目第一次加载快，并且编译出的结果分析性高<br>去中心化：非常规配置，官方提供的功能是通过路由寻找到页面，但页面需在router里面配置一下，导致耦合性低，去中心化是将router配置放在了需加载页面中，不需要创建router配置内容，因此页面可完全独立开，甚至可以根据具体的项目情况，实现默认根据物理路径默认router配置，但暂时无法没想到按需加载的办法</p>
-<p>去中心化示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@routerDeco(&quot;/CompanyProfile&quot;,&quot;company&quot;,&quot;layout&quot;)</span><br></pre></td></tr></table></figure></p>
+    	<p>1，写sh脚本,放在宿主机上的/shell下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># 保留10天数据，</span><br><span class="line"># mysqldocker 为安装mysql的docker</span><br><span class="line">docker exec -i mysql bash&lt;&lt;&apos;EOF&apos;</span><br><span class="line"># 判断目录是不是已经存在，如果不存在则创建</span><br><span class="line">if [ ! -d &quot;/backups/mysql&quot; ]; then</span><br><span class="line">mkdir -p /backups/mysql</span><br><span class="line">fi</span><br><span class="line"># ohstudydb 为数据库的名称</span><br><span class="line">mysqldump ohstudydb -uroot -p&apos;123456&apos; &gt; /backups/mysql/backups_$(date +%Y%m%d).sql</span><br><span class="line">#删除超过10天的数据</span><br><span class="line">rm -f /backups/mysql/backups_$(date -d -10day +%Y%m%d).sql</span><br><span class="line">exit</span><br><span class="line">EOF</span><br><span class="line"># 判断目录是不是已经存在，如果不存在则创建</span><br><span class="line">if [ ! -d &quot;/backups/mysql&quot; ]; then</span><br><span class="line">mkdir -p /backups/mysql</span><br><span class="line">fi</span><br><span class="line"># 将docker中的备份的数据拷贝到宿主机上。</span><br><span class="line">docker cp mysql:/backups/mysql/backups_$(date +%Y%m%d).sql /backups/mysql</span><br><span class="line">#删除超过10天的数据</span><br><span class="line">rm -f /backups/mysql/backups_$(date -d -10day +%Y%m%d).sql</span><br></pre></td></tr></table></figure></p>
+<p>注意：格式需要转换，在notepad中转换为 编辑-文档格式转换-Unix</p>
+<p>完成后自定测试脚本是否正常运行</p>
+<p>2，安装crontab<br>yum -y install vixie-cron<br>yum -y install crontabs</p>
+<p>3，增加定时任务<br>crontab -e<br>1 0 <em> </em> * sh /shell/backups.sh 每天凌晨12点01分执行</p>
+<p>补充：<br>日志位置：（待补充）</p>
 
   	</div>
 	  
@@ -155,14 +158,10 @@
 	
 		<div class="art-item-footer">
 				
-					<span class="art-item-left"><i class="icon icon-chevron-thin-left"></i>prev：<a href="/2019/05/07/transation/" rel="prev" title="对象状态暂存">
-						对象状态暂存 
+					<span class="art-item-left"><i class="icon icon-chevron-thin-left"></i>prev：<a href="/2019/01/14/front-vue/" rel="prev" title="架构设计浅谈">
+						架构设计浅谈 
 					</a></span>
 				
-				
-					<span class="art-item-right">next：<a href="/2019/05/04/mock/" rel="next" title="mock处理">
-						mock处理
-					</a><i class="icon icon-chevron-thin-right"></i></span>
 				
 		</div>
 	
@@ -171,7 +170,7 @@
 </article>
 <script>
 	window.subData = {
-		title: 'router处理',
+		title: 'docker中使用mysql做定时备份',
 		tools: true
 	}
 </script>
